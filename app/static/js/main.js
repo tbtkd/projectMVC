@@ -1,3 +1,8 @@
-// Código JavaScript futuro irá aquí
-console.log("JavaScript cargado");
+// Archivo principal de JavaScript para la aplicación
+// Contiene la inicialización general y funciones globales
+
+document.addEventListener('DOMContentLoaded', function() {
+    // Función que se ejecuta cuando el DOM está completamente cargado
+    console.log('Aplicación inicializada');
+});
 

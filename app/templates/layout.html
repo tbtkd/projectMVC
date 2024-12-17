@@ -7,8 +7,36 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
-    {% block content %}{% endblock %}
+    <div class="top-bar">
+        <button id="loginButton" class="login-button">Iniciar sesión</button>
+    </div>
+    <div class="main-container">
+        <div class="sidebar">
+    <button id="sidebarToggle" class="sidebar-toggle">Sitios Web</button>
+    <div id="sidebarMenu" class="sidebar-menu">
+        <a href="https://www.google.com" target="_blank">
+            <img src="{{ url_for('static', filename='images/google-icon.png') }}" alt="Google">
+            Google
+        </a>
+        <a href="https://www.facebook.com" target="_blank">
+            <img src="{{ url_for('static', filename='images/facebook-icon.png') }}" alt="Facebook">
+            Facebook
+        </a>
+        <a href="https://www.youtube.com" target="_blank">
+            <img src="{{ url_for('static', filename='images/youtube-icon.png') }}" alt="YouTube">
+            YouTube
+        </a>
+    </div>
+</div>
+        <div class="main-content">
+            {% block content %}{% endblock %}
+        </div>
+    </div>
+
     <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/sidebar.js') }}"></script>
+    {% include 'login_modal.html' %}
+    <script src="{{ url_for('static', filename='js/login_modal.js') }}"></script>
 </body>
 </html>
 
