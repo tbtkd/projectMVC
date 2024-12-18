@@ -41,6 +41,49 @@ document.addEventListener('DOMContentLoaded', function() {
         loginForm.style.display = 'none';
     }
 
+    // Función para validar la contraseña
+    function validatePassword(password) {
+        const minLength = 8;
+        const hasUpperCase = /[A-Z]/.test(password);
+        const hasSpecialChar = /[!@#$%^&*(),.?":{}|<>]/.test(password);
+        
+        return password.length >= minLength && hasUpperCase && hasSpecialChar;
+    }
+
+        // Función para validar la usuario
+        function validateUsername(username) {
+            const minLength = 6;
+            
+            return username.length >= minLength;
+        }
+    
+    // Función para validar el formulario de registro
+    function validateRegisterForm() {
+        const username = document.getElementById('reg_username').value;
+        const nombre = document.getElementById('nombre').value;
+        const apPaterno = document.getElementById('apPaterno').value;
+        const apMaterno = document.getElementById('apMaterno').value;
+        const email = document.getElementById('email').value;
+        const password = document.getElementById('newPassword').value;
+
+        if (!username || !nombre || !apPaterno || !apMaterno || !email || !password) {
+            alert('Todos los campos son obligatorios');
+            return false;
+        }
+
+        if (!validateUsername(username)) {
+            alert('El usuario debe tener al menos 6 caracteres');
+            return false;
+        }
+
+        if (!validatePassword(password)) {
+            alert('La contraseña debe tener al menos 8 caracteres, una letra mayúscula y un carácter especial');
+            return false;
+        }
+
+        return true;
+    }
+
     // Función para manejar el envío del formulario de login
     loginForm.onsubmit = function(e) {
         e.preventDefault();
@@ -69,6 +112,11 @@ document.addEventListener('DOMContentLoaded', function() {
     // Función para manejar el envío del formulario de registro
     registerForm.onsubmit = function(e) {
         e.preventDefault();
+        
+        if (!validateRegisterForm()) {
+            return;
+        }
+
         const username = document.getElementById('reg_username').value;
         const nombre = document.getElementById('nombre').value;
         const apPaterno = document.getElementById('apPaterno').value;
