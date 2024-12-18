@@ -44,15 +44,52 @@ document.addEventListener('DOMContentLoaded', function() {
     // Función para manejar el envío del formulario de login
     loginForm.onsubmit = function(e) {
         e.preventDefault();
-        alert('Inicio de sesión realizado con éxito');
-        modal.style.display = 'none';
+        const username = document.getElementById('username').value;
+        const password = document.getElementById('password').value;
+        
+        fetch('/login', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ username, password }),
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                alert(data.message);
+                modal.style.display = 'none';
+                checkAuth();
+            } else {
+                alert(data.message);
+            }
+        });
     }
 
     // Función para manejar el envío del formulario de registro
     registerForm.onsubmit = function(e) {
         e.preventDefault();
-        alert('Registro realizado con éxito');
-        modal.style.display = 'none';
+        const username = document.getElementById('reg_username').value;
+        const nombre = document.getElementById('nombre').value;
+        const apPaterno = document.getElementById('apPaterno').value;
+        const apMaterno = document.getElementById('apMaterno').value;
+        const email = document.getElementById('email').value;
+        const password = document.getElementById('newPassword').value;
+        
+        fetch('/register', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ username, nombre, apPaterno, apMaterno, email, password }),
+        })
+        .then(response => response.json())
+        .then(data => {
+            alert(data.message);
+            if (data.success) {
+                modal.style.display = 'none';
+            }
+        });
     }
 });
 
