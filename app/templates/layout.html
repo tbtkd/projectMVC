@@ -5,29 +5,35 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ title }}</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 <body>
     <div class="top-bar">
+        <div id="welcomeMessage" class="welcome-message" style="display: none;"></div>
         <button id="loginButton" class="login-button">Iniciar sesión</button>
     </div>
     <div class="main-container">
         <div class="sidebar">
-    <button id="sidebarToggle" class="sidebar-toggle">Sitios Web</button>
-    <div id="sidebarMenu" class="sidebar-menu">
-        <a href="https://www.google.com" target="_blank">
-            <img src="{{ url_for('static', filename='images/google-icon.png') }}" alt="Google">
-            Google
-        </a>
-        <a href="https://www.facebook.com" target="_blank">
-            <img src="{{ url_for('static', filename='images/facebook-icon.png') }}" alt="Facebook">
-            Facebook
-        </a>
-        <a href="https://www.youtube.com" target="_blank">
-            <img src="{{ url_for('static', filename='images/youtube-icon.png') }}" alt="YouTube">
-            YouTube
-        </a>
-    </div>
-</div>
+            <button id="sidebarToggle" class="sidebar-toggle">Sitios Web</button>
+            <div id="sidebarMenu" class="sidebar-menu">
+                <a href="https://www.google.com" target="_blank">
+                    <img src="{{ url_for('static', filename='images/google-icon.png') }}" alt="Google">
+                    Google
+                </a>
+                <a href="https://www.facebook.com" target="_blank">
+                    <img src="{{ url_for('static', filename='images/facebook-icon.png') }}" alt="Facebook">
+                    Facebook
+                </a>
+                <a href="https://www.youtube.com" target="_blank">
+                    <img src="{{ url_for('static', filename='images/youtube-icon.png') }}" alt="YouTube">
+                    YouTube
+                </a>
+            </div>
+            <button id="logoutButton" class="logout-button" style="display: none;">
+                <i data-lucide="log-out"></i>
+                Cerrar sesión
+            </button>
+        </div>
         <div class="main-content">
             {% block content %}{% endblock %}
         </div>
@@ -37,6 +43,9 @@
     <script src="{{ url_for('static', filename='js/sidebar.js') }}"></script>
     {% include 'login_modal.html' %}
     <script src="{{ url_for('static', filename='js/login_modal.js') }}"></script>
+    <script>
+        lucide.createIcons();
+    </script>
 </body>
 </html>
 
